@@ -32,14 +32,38 @@
   <!-- Navbar -->
   <nav class="bg-gray-900 border-b border-purple-800 shadow-lg sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <h1 class="text-2xl">The Spire Tower</h1>
+      <!-- Logo / Title -->
+      <h1 class="text-2xl font-bold text-white">The Spire Tower</h1>
+
+      <!-- Desktop Menu (แสดงบน md ขึ้นไป) -->
       <ul class="hidden md:flex space-x-6">
-        <li><a href="index.html" class="font-bold hover:text-purple-300 transition">หน้าแรก</a></li>
-        <li><a href="create-character.html" class="hover:text-purple-300 transition">สร้างตัวละคร</a></li>
-        <li><a href="rules-system.html" class="hover:text-purple-300 transition">activities</a></li>
-        <li><a href="spells-research.html" class="hover:text-purple-300 transition">spells-research</a></li>
-        <li><a href="word-map.html" class="hover:text-purple-300 transition">world map</a></li>
+        <li><a href="index.html" class="font-bold text-purple-300 hover:text-purple-100 transition">หน้าแรก</a></li>
+        <li><a href="create-character.html" class="text-gray-300 hover:text-purple-300 transition">สร้างตัวละคร</a></li>
+        <li><a href="rules-system.html" class="text-gray-300 hover:text-purple-300 transition">activities</a></li>
+        <li><a href="spells-research.html" class="text-gray-300 hover:text-purple-300 transition">spells-research</a>
+        </li>
+        <li><a href="word-map.html" class="text-gray-300 hover:text-purple-300 transition">world map</a></li>
       </ul>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="md:hidden">
+        <button id="menuBtn" class="text-gray-300 hover:text-white focus:outline-none">
+          <!-- Hamburger Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu (เริ่มต้นซ่อน) -->
+    <div id="mobileMenu" class="hidden bg-gray-800 md:hidden px-4 py-2 space-y-2">
+      <a href="index.html" class="block font-bold text-purple-300 hover:text-purple-100 transition py-2">หน้าแรก</a>
+      <a href="create-character.html" class="block text-gray-300 hover:text-purple-300 transition py-2">สร้างตัวละคร</a>
+      <a href="rules-system.html" class="block text-gray-300 hover:text-purple-300 transition py-2">activities</a>
+      <a href="spells-research.html"
+        class="block text-gray-300 hover:text-purple-300 transition py-2">spells-research</a>
+      <a href="word-map.html" class="block text-gray-300 hover:text-purple-300 transition py-2">world map</a>
     </div>
   </nav>
 
