@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Spire Tower - โลกแห่งการผจญภัย</title>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com "></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#b91c1c', // แดงเลือด (D&D vibe)
+            secondary: '#1e293b', // น้ำเงินเข้ม
+            accent: '#7c2d12', // น้ำตาลเข้ม/ทองแดง
+            dark: '#0f172a', // พื้นหลังดำสนิท
+            light: '#f1f5f9',
+          },
+          fontFamily: {
+            display: ['"Times New Roman"', 'serif'],
+            body: ['Arial', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css "/>
+</head>
+<body class="bg-dark text-light font-body leading-relaxed min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-primary to-accent shadow-2xl sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-3xl md:text-4xl font-bold text-yellow-100 flex items-center gap-3">
+        <i class="fas fa-tower-observation text-yellow-200"></i>
+        The Spire Tower
+      </h1>
+      <nav class="hidden md:flex space-x-8">
+        <a href="#home" class="hover:text-yellow-200 transition duration-300">หน้าแรก</a>
+        <a href="#create" class="hover:text-yellow-200 transition duration-300">สร้างตัวละคร</a>
+        <a href="#books" class="hover:text-yellow-200 transition duration-300">หนังสือที่อนุญาต</a>
+        <a href="#systems" class="hover:text-yellow-200 transition duration-300">ระบบเกม</a>
+      </nav>
+      <button class="md:hidden text-yellow-100">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Nav (Simple Toggle Placeholder) -->
+  <div id="mobile-nav" class="hidden bg-secondary p-4 text-center md:hidden">
+    <a href="#home" class="block py-2 hover:text-yellow-200">หน้าแรก</a>
+    <a href="#create" class="block py-2 hover:text-yellow-200">สร้างตัวละคร</a>
+    <a href="#books" class="block py-2 hover:text-yellow-200">หนังสือที่อนุญาต</a>
+    <a href="#systems" class="block py-2 hover:text-yellow-200">ระบบเกม</a>
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex-grow container mx-auto px-6 py-12">
+
+    <!-- Section 1: The Spire Tower -->
+    <section id="home" class="mb-20 scroll-mt-20">
+      <div class="bg-secondary/80 backdrop-blur-sm rounded-xl p-8 shadow-2xl border border-primary/30">
+        <h2 class="text-4xl font-bold text-yellow-100 mb-6 flex items-center gap-3">
+          <i class="fas fa-dungeon"></i> The Spire Tower
+        </h2>
+        <p class="text-lg mb-4 indent-8 leading-relaxed">
+          ไม่มีใครรู้แน่ชัดว่ามันปรากฏขึ้นเมื่อใด บางคนบอกว่ามันเกิดขึ้น “เมื่อคืนนี้” 
+          ขณะที่อีกกลุ่มยืนยันว่าพวกเขาจำได้ว่าเห็นมันตั้งแต่เด็ก 
+          แต่ไม่เคยมีแผนที่ใดใน Faerûn ที่เคยระบุ “The Spire Tower” ไว้ในตำแหน่งนี้มาก่อน 
+          ท่ามกลางหุบเขาอันรกร้างทางตอนเหนือของ The High Forest 
+          ณ จุดที่เคยเป็นเพียงทุ่งหญ้าไร้ชื่อ 
+          เสาหอคอยหินสูงล้ำเมฆา ปรากฏขึ้นจากเบื้องล่างอย่างเงียบงัน 
+          สูงจนไม่มีใครมองเห็นยอด และเย็นเยียบแม้ในยามกลางวัน
+        </p>
+        <p class="text-lg mb-6 indent-8 leading-relaxed">
+          ผู้คนเริ่มหลั่งไหลมา... 
+          ไม่ใช่ด้วยคำสั่งของกษัตริย์ ไม่ใช่ด้วยคำเรียกของเหล่าทวยเทพ 
+          แต่ด้วยเสียงกระซิบในฝัน 
+          ภาพเงาเลือนรางในนิมิต 
+          และบางสิ่ง... ที่พวกเขาไม่อาจอธิบายได้
+        </p>
+
+        <div class="bg-black/40 p-6 rounded-lg border-l-4 border-primary my-6">
+          <blockquote class="italic text-yellow-200 text-xl">
+            “หากคุณได้ยินเสียงเรียก... จงรู้ไว้ว่า The Spire ไม่ได้เลือกใครโดยบังเอิญ”
+          </blockquote>
+        </div>
+
+        <h3 class="text-2xl font-semibold mt-8 mb-4 text-white">สถานที่สำคัญภายใน</h3>
+
+        <!-- The Grand Hall -->
+        <div class="bg-dark/60 p-5 rounded-lg mb-6 border border-gray-700">
+          <h4 class="text-xl font-bold text-accent flex items-center gap-2">
+            <i class="fas fa-door-open"></i> The Grand Hall
+          </h4>
+          <p class="mt-2 indent-6">
+            ทันทีที่ก้าวพ้นธรณีประตูของ The Spire Tower ผู้มาเยือนทุกคนจะพบกับความเงียบที่ “ลึก” ยิ่งกว่าความเงียบใดที่เคยสัมผัส
+            โถงหลักของหอคอยสูงตระหง่านจนมองไม่เห็นเพดาน แสงสว่างลอยอยู่ในอากาศราวกับฝุ่นทอง
+            ตรงกลางห้องคือแท่นคริสตัลขนาดใหญ่ที่เปล่งแสงจาง ๆ และเปลี่ยนสีตามบุคลิกของผู้ที่เข้าใกล้
+            ว่ากันว่า แท่นนี้คือหัวใจของ The Spire และมัน “เฝ้ามอง” นักผจญภัยทุกคน
+          </p>
+          <p class="text-sm text-gray-400 mt-3">
+            — Edwina, The Receptionist of The Spire Tower: “ทุกภารกิจ ทุกเรื่องเล่า ทุกตำนาน... ล้วนมีรากฐานมาจากที่นี่”
+          </p>
+        </div>
+
+        <!-- Training Ground -->
+        <div class="bg-dark/60 p-5 rounded-lg mb-6 border border-gray-700">
+          <h4 class="text-xl font-bold text-accent flex items-center gap-2">
+            <i class="fas fa-dumbbell"></i> Training Ground
+          </h4>
+          <p class="mt-2 indent-6">
+            ลานฝึกสำหรับนักผจญภัยทุกคน ไม่ว่าจะมือใหม่หรือมือเก๋า พื้นหินเวทมนตร์สามารถดูดซับแรงกระแทกและเวทมนตร์ได้โดยไม่เกิดอันตรายจริง
+            มีหุ่นจำลองศัตรู เช่น ก๊อบลิน นักธนู หรือกับดัก เพื่อให้ผู้เล่นได้ทดสอบทักษะก่อนออกผจญภัย
+          </p>
+          <p class="text-sm text-gray-400 mt-3">
+            — “ไม่มีใครหัวเราะเยาะคนที่ซ้อมเยอะเกินไป... แต่คนที่ไม่ซ้อมเลย มักไม่ได้หัวเราะกลับ”
+          </p>
+        </div>
+
+        <!-- The Spiral Paradise -->
+        <div class="bg-dark/60 p-5 rounded-lg mb-6 border border-gray-700">
+          <h4 class="text-xl font-bold text-accent flex items-center gap-2">
+            <i class="fas fa-wine-glass"></i> The Spiral Paradise
+          </h4>
+          <p class="mt-2 indent-6">
+            โรงเตี๊ยมในหอคอยที่ให้ความรู้สึกเหมือนกลับบ้าน บรรยากาศผ่อนคลาย เสียงแก้วชนกันประสานเป็นทำนอง
+            กลิ่นอายของบ้านที่จากมาไกล เป็นจุดพักผ่อนยอดนิยมของนักผจญภัยก่อนและหลังภารกิจ
+          </p>
+        </div>
+
+        <!-- Zha’reth Ulm -->
+        <div class="bg-dark/60 p-5 rounded-lg mb-6 border border-red-900 bg-gradient-to-r from-red-950/40 to-transparent">
+          <h4 class="text-xl font-bold text-red-300 flex items-center gap-2">
+            <i class="fas fa-skull-crossbones"></i> Zha’reth Ulm
+          </h4>
+          <p class="mt-2 indent-6 text-red-100">
+            ห้องลับในส่วนลึกของหอคอย ที่แม้แต่เทพยังไม่กล้ารุกราน เป็นจุดระหว่าง “ก่อนจะตาย” กับ “หลังจากนั้น”
+            ที่มนุษย์มิอาจนิยาม ที่นั่น คุณจะพบกับ Amelia Syrenholm — หญิงสาวผู้เปล่งพลังลึกล้ำ
+            ผมสีม่วงเข้มผสมแดงเพลิง เหมือนเปลวไฟที่ไม่ยอมดับ มีดวงตาสีแดงสดที่มองทะลุจิตวิญญาณ
+            ความตายรู้จักเธอ... ดีเกินกว่าจะแตะต้อง
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: สร้างตัวละคร -->
+    <section id="create" class="mb-20 scroll-mt-20">
+      <div class="bg-secondary/80 backdrop-blur-sm rounded-xl p-8 shadow-2xl border border-primary/30">
+        <h2 class="text-4xl font-bold text-yellow-100 mb-6 flex items-center gap-3">
+          <i class="fas fa-users"></i> วิธีสร้างตัวละคร
+        </h2>
+        <p class="mb-6">
+          ทุกการผจญภัยเริ่มต้นจากหนึ่งก้าว... และหนึ่งก้าวนั้นเริ่มที่นี่
+        </p>
+        <ol class="list-decimal list-inside space-y-4 ml-4 text-lg">
+          <li><strong>เลือกเผ่าพันธุ์:</strong> มนุษย์, เอลฟ์, ดวาร์ฟ, ฮาล์ฟลิ้ง หรือเผ่าอื่น ๆ จาก Faerûn</li>
+          <li><strong>เลือกอาชีพ:</strong> นักรบ, เวทมนตร์, นักบวช, จารชน หรือผู้เชี่ยวชาญพิเศษ</li>
+          <li><strong>กำหนดสถิติ:</strong> ใช้ระบบ 27 Point Buy หรือทอย 4d6 ทิ้งลูกต่ำสุด</li>
+          <li><strong>เลือกภูมิหลัง:</strong> อดีตของคุณคือรากฐานของพลัง — อดีตนักโทษ, นักบวช, หรือผู้พลัดพรากจากโลก</li>
+          <li><strong>รับ "เสียงเรียก":</strong> ทุกตัวละครได้ยินเสียงกระซิบในฝันก่อนมาถึง The Spire</li>
+          <li><strong>ลงทะเบียนที่ The Grand Hall:</strong> ไปยังแท่นคริสตัลกลางโถงเพื่อเริ่มภารกิจแรก</li>
+        </ol>
+        <div class="mt-6 p-4 bg-primary/20 rounded border-l-4 border-primary">
+          <p class="text-yellow-100">
+            <strong>เคล็ดลับ:</strong> ทดลองทักษะทั้งหมดที่ <strong>Lan ฝึก</strong> ก่อนออกผจญภัยจริง
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: หนังสือที่อนุญาต -->
+    <section id="books" class="mb-20 scroll-mt-20">
+      <div class="bg-secondary/80 backdrop-blur-sm rounded-xl p-8 shadow-2xl border border-primary/30">
+        <h2 class="text-4xl font-bold text-yellow-100 mb-6 flex items-center gap-3">
+          <i class="fas fa-book"></i> รายชื่อหนังสือที่อนุญาต
+        </h2>
+        <p class="mb-6">
+          หนังสือที่สามารถใช้อ้างอิงในการสร้างตัวละครและระบบการเล่น
+        </p>
+        <ul class="space-y-3 list-disc list-inside text-lg">
+          <li><strong>Player’s Handbook (5th Edition)</strong> – พื้นฐานทุกอย่าง</li>
+          <li><strong>Xanathar’s Guide to Everything</strong> – ตัวเลือกเสริมสำหรับทุกอาชีพ</li>
+          <li><strong>Tasha’s Cauldron of Everything</strong> – กฎยืดหยุ่นและตัวเลือกใหม่</li>
+          <li><strong>Mordenkainen’s Tome of Foes</strong> – เผ่าพันธุ์และภูมิหลังลึก</li>
+          <li><strong>Volo’s Guide to Monsters</strong> – สำหรับผู้เล่นที่ต้องการเผ่าพันธุ์แปลก</li>
+        </ul>
+        <div class="mt-6 p-4 bg-accent/20 rounded border-l-4 border-accent">
+          <p>⚠️ หนังสือเสริมอื่น ๆ ต้องได้รับอนุญาตจาก DM ก่อนใช้งาน</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: ระบบ -->
+    <section id="systems" class="scroll-mt-20">
+      <div class="bg-secondary/80 backdrop-blur-sm rounded-xl p-8 shadow-2xl border border-primary/30">
+        <h2 class="text-4xl font-bold text-yellow-100 mb-6 flex items-center gap-3">
+          <i class="fas fa-cogs"></i> ระบบ
+        </h2>
+        <div class="space-y-6 text-lg">
+          <div>
+            <h3 class="text-2xl font-semibold text-white">1. การทอยลูกเต๋า</h3>
+            <p>ใช้ d20 สำหรับการตรวจสอบทักษะ, การโจมตี และการเซฟ</p>
+            <p>ใช้ d4–d12 ตามประเภทอาวุธและเวทมนตร์</p>
+          </div>
+          <div>
+            <h3 class="text-2xl font-semibold text-white">2. ประตูมิติ</h3>
+            <p>แต่ละประตูใต้หอคอยนำไปสู่ "โลกอื่น" — มิติที่ไม่เคยมีในตำนาน นรกที่เทพยังไม่กล้าเอ่ยชื่อ หรือสวรรค์ที่แม้ Celestial เองยังไม่กล้าสัมผัส</p>
+            <p>ทุกครั้งที่ใครผ่านไป อีก "บางสิ่ง" ก็เดินออกมาสู่โลกนี้</p>
+          </div>
+          <div>
+            <h3 class="text-2xl font-semibold text-white">3. สนามทดสอบ</h3>
+            <p>The Spire Tower ไม่ใช่แค่หอคอย แต่คือ “สนามทดสอบ” ของผู้ที่กล้าก้าวข้ามขีดจำกัดของตนเอง และของโลกใบนี้</p>
+          </div>
+          <div>
+            <h3 class="text-2xl font-semibold text-white">4. แท่นคริสตัล</h3>
+            <p>ตั้งอยู่ที่ The Grand Hall เปล่งแสงตามบุคลิกผู้เข้าใกล้ และ "เฝ้ามอง" นักผจญภัยทุกคน</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-secondary py-8 mt-12 border-t border-primary/30">
+    <div class="container mx-auto px-6 text-center">
+      <p>&copy; <span id="year"></span> The Spire Tower | โลกแห่งการผจญภัยใน Faerûn</p>
+      <p class="text-sm text-gray-400 mt-2">Powered by Dungeons & Dragons 5e</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Simple mobile nav toggle
+    const navBtn = document.querySelector('.fa-bars');
+    const mobileNav = document.getElementById('mobile-nav');
+    navBtn.addEventListener('click', () => {
+      mobileNav.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

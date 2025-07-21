@@ -1,0 +1,254 @@
+import React, { useState, useEffect } from 'react';
+
+const App = () => {
+  const [activeSection, setActiveSection] = useState('spire');
+  const [editMode, setEditMode] = useState(false);
+  const [editedContent, setEditedContent] = useState('');
+
+  // Mock data based on the Google Doc content
+  const wikiData = {
+    spire: {
+      title: "The Spire Tower",
+      content: `หอคอยสไปร์ (The Spire Tower) เป็นหนึ่งในสถานที่ศักดิ์สิทธิ์ที่ลึกลับที่สุดในโลกของ Dungeons & Dragons ตั้งอยู่ใจกลางป่าเวทมนตร์แห่ง Aelindor
+
+ลักษณะเด่น:
+• สูงกว่า 1,000 ฟุต มีลักษณะเป็นหอคอยเรียวแหลมสีดำสนิท
+• สร้างด้วยหินเวทมนตร์โบราณที่ไม่สามารถทำลายได้
+• ปล่อยพลังงานเวทมนตร์ออกมาอย่างต่อเนื่อง
+• มีบันไดวนที่ไม่มีที่สิ้นสุดภายใน
+
+ประวัติ:
+หอคอยนี้ถูกสร้างขึ้นโดยเผ่าพันธุ์เอลฟ์โบราณเมื่อ 5,000 ปีก่อน เพื่อเป็นที่เก็บรักษาความรู้และพลังเวทระดับสูงสุด มี传说ว่าผู้ที่สามารถปีนขึ้นไปถึงยอดหอคอยจะได้รับพลังอำนาจเหนือธรรมชาติ
+
+การเข้าถึง:
+- ต้องมีกุญแจเวทมนตร์ 3 ดอก
+- ต้องผ่านการทดสอบจิตใจ 4 ขั้นตอน
+- มีสิ่งมีชีวิตคุ้มกันมากมาย เช่น Shadow Wraiths และ Stone Guardians
+
+ปัจจุบัน:
+หอคอยถูกล็อกไว้ตั้งแต่เหตุการณ์ Great Schism เมื่อ 300 ปีก่อน และยังไม่มีใครสามารถเข้าไปได้อีก`,
+      lastUpdated: "2024-01-15"
+    },
+    characterCreation: {
+      title: "วิธีสร้างตัวละคร",
+      content: `ขั้นตอนการสร้างตัวละคร D&D:
+
+1. เลือกเผ่าพันธุ์ (Race)
+   • มนุษย์ (Human): +1 ทุกด้าน
+   • เอลฟ์ (Elf): +2 พลังเวท, มองเห็นในที่มืด
+   • วานร (Halfling): +2 ความคล่องตัว, โชคดี
+   • กึ่งออร์ค (Half-Orc): +2 พลังกาย, การโจมตีคริติคอล x2
+
+2. เลือกอาชีพ (Class)
+   • นักรบ (Fighter): ถนัดการต่อสู้ระยะประชิด
+   • นักเวท (Wizard): ใช้เวทมนตร์ระดับสูง
+   • นักบวช (Cleric): รักษาและเสริมพลัง
+   • โจร (Rogue): ชำนาญการซุ่มโจมตี
+
+3. กำหนดสถิติ (Ability Scores)
+   ใช้ระบบ 4d6 drop lowest:
+   • พลังกาย (Strength)
+   • ความคล่องตัว (Dexterity)
+   • สรีระ (Constitution)
+   • ปัญญา (Intelligence)
+   • ปัญญาใจ (Wisdom)
+   • บุคลิกภาพ (Charisma)
+
+4. เลือกภูมิหลัง
+   • นักผจญภัย (Adventurer)
+   • นักวิชาการ (Scholar)
+   • ผู้รอดชีวิต (Survivor)
+   • นักเลง (Outlaw)
+
+5. เลือกทักษะและอุปกรณ์
+   • ทักษะ: ตามอาชีพและภูมิหลัง
+   • อุปกรณ์เริ่มต้น: ตามอาชีพ`,
+      lastUpdated: "2024-01-14"
+    },
+    officialBooks: {
+      title: "รายชื่อหนังสือที่อนุญาต",
+      content: `หนังสือทางการที่ได้รับอนุญาตสำหรับการใช้งาน:
+
+1. Player's Handbook (PHB)
+   • เนื้อหาพื้นฐานทั้งหมด
+   • เผ่าพันธุ์ อาชีพ ทักษะ
+   • กฎการเล่นพื้นฐาน
+
+2. Dungeon Master's Guide (DMG)
+   • กฎสำหรับผู้เล่นบทบาท DM
+   • การสร้างโลก
+   • การออกแบบดันเจี้ยน
+   • ไอเท็มเวทมนตร์
+
+3. Monster Manual (MM)
+   • สิ่งมีชีวิตมากกว่า 300 ชนิด
+   • สถิติการต่อสู้
+   • พฤติกรรมและความฉลาด
+
+4. Xanathar's Guide to Everything
+   • ตัวเลือกเพิ่มเติมสำหรับตัวละคร
+   • ทักษะใหม่
+   • ตารางสุ่มต่างๆ
+
+5. Tasha's Cauldron of Everything
+   • กฎทางเลือก
+   • Subclass ใหม่
+   • Magical Items
+
+6. Mordenkainen's Tome of Foes
+   • ศัตรูระดับสูง
+   • ตำนานและการเมือง
+   • เผ่าพันธุ์ใหม่
+
+7. Guildmasters' Guide to Ravnica
+   • โลกแฟนตาซีแบบเมือง
+   • เผ่าพันธุ์เฉพาะ
+   • องค์กรต่างๆ
+
+หมายเหตุ: หนังสือเหล่านี้สามารถใช้ร่วมกันได้ แต่ควรปรึกษา DM ก่อนใช้เนื้อหาจากหลายเล่ม`,
+      lastUpdated: "2024-01-13"
+    }
+  };
+
+  const handleEdit = (section) => {
+    setEditMode(true);
+    setEditedContent(wikiData[section].content);
+  };
+
+  const handleSave = (section) => {
+    // In a real app, this would save to database
+    alert(`Saved changes to ${wikiData[section].title}`);
+    setEditMode(false);
+  };
+
+  const handleCancel = () => {
+    setEditMode(false);
+    setEditedContent('');
+  };
+
+  const SectionCard = ({ sectionKey }) => {
+    const data = wikiData[sectionKey];
+    return (
+      <div className="bg-gray-800 rounded-lg p-6 border border-gray-700 hover:border-purple-500 transition-all duration-300">
+        <div className="flex justify-between items-start mb-4">
+          <h2 className="text-2xl font-bold text-white flex items-center">
+            <svg className="w-6 h-6 mr-2 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            {data.title}
+          </h2>
+          {!editMode && (
+            <button
+              onClick={() => handleEdit(sectionKey)}
+              className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded text-sm transition-colors"
+            >
+              แก้ไข
+            </button>
+          )}
+        </div>
+        
+        {editMode ? (
+          <div>
+            <textarea
+              value={editedContent}
+              onChange={(e) => setEditedContent(e.target.value)}
+              className="w-full h-64 bg-gray-700 text-gray-100 p-4 rounded border border-gray-600 focus:border-purple-500 focus:outline-none font-mono text-sm leading-relaxed"
+              style={{ fontFamily: 'monospace' }}
+            />
+            <div className="flex gap-2 mt-4">
+              <button
+                onClick={() => handleSave(sectionKey)}
+                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition-colors"
+              >
+                บันทึก
+              </button>
+              <button
+                onClick={handleCancel}
+                className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded transition-colors"
+              >
+                ยกเลิก
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="prose prose-invert max-w-none">
+            <pre className="whitespace-pre-wrap text-gray-300 text-sm leading-relaxed font-mono bg-gray-900 p-4 rounded border border-gray-700">
+              {data.content}
+            </pre>
+          </div>
+        )}
+        
+        <div className="mt-4 text-xs text-gray-400">
+          อัปเดตล่าสุด: {data.lastUpdated}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
+      {/* Header */}
+      <header className="bg-black bg-opacity-50 backdrop-blur-sm border-b border-purple-500 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <h1 className="text-xl font-bold text-white">D&D Wiki</h1>
+            </div>
+            
+            {editMode && (
+              <div className="text-yellow-400 text-sm font-medium">
+                โหมดแก้ไข
+              </div>
+            )}
+          </div>
+        </div>
+      </header>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Navigation */}
+        <nav className="mb-8">
+          <div className="flex flex-wrap gap-2">
+            {Object.keys(wikiData).map((section) => (
+              <button
+                key={section}
+                onClick={() => setActiveSection(section)}
+                className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                  activeSection === section
+                    ? 'bg-purple-600 text-white shadow-lg'
+                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                }`}
+              >
+                {wikiData[section].title}
+              </button>
+            ))}
+          </div>
+        </nav>
+
+        {/* Main Content */}
+        <main>
+          <SectionCard sectionKey={activeSection} />
+        </main>
+
+        {/* Footer */}
+        <footer className="mt-12 text-center text-gray-400 text-sm">
+          <p>Dungeons & Dragons Wiki - ฐานข้อมูลสำหรับผู้เล่นและผู้สร้างโลก</p>
+          <p className="mt-1">อัปเดตล่าสุด: {new Date().toLocaleDateString('th-TH')}</p>
+        </footer>
+      </div>
+
+      {/* Decorative Elements */}
+      <div className="fixed inset-0 pointer-events-none opacity-10">
+        <div className="absolute top-20 left-20 w-32 h-32 border-2 border-purple-500 rounded-full"></div>
+        <div className="absolute bottom-20 right-20 w-24 h-24 border-2 border-pink-500 rounded-full"></div>
+        <div className="absolute top-1/2 left-1/4 w-16 h-16 border-2 border-blue-500 rounded-full"></div>
+      </div>
+    </div>
+  );
+};
+
+export default App;
