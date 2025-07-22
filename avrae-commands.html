@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8" />
@@ -7,6 +7,7 @@
     <title>Avrae Commands | The Spire Tower</title>
     <script src="https://cdn.tailwindcss.com "></script>
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <script src=" https://cdn.jsdelivr.net/npm/alpinejs @3.x.x/dist/cdn.min.js" defer></script>
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
@@ -22,158 +23,272 @@
             color: #d8b4fe;
         }
 
-        code {
-            @apply bg-gray-900 text-green-300 px-2 py-1 rounded font-mono text-sm;
+        .search-input {
+            background: #1e1e30;
+            border: 1px solid #553f8c;
         }
 
-        pre {
-            @apply bg-gray-800 p-4 rounded-lg border-l-4 border-purple-600 overflow-x-auto;
+        .search-input:focus {
+            outline: none;
+            border-color: #a78bfa;
+            box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.3);
         }
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col">
+<body x-data="{ search: '' }" class="bg-gradient-to-br from-slate-900 to-slate-800 text-white min-h-screen">
 
     <!-- Navbar -->
     <nav class="bg-gray-900 border-b border-purple-800 shadow-lg sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="index.html" class="text-2xl medieval">The Spire Tower</a>
-            <ul class="hidden md:flex space-x-6">
-                <li><a href="index.html" class="hover:text-purple-300 transition">หน้าแรก</a></li>
-                <li><a href="create-character.html" class="hover:text-purple-300 transition">สร้างตัวละคร</a></li>
-                <li><a href="rules-system.html" class="hover:text-purple-300 transition">activities</a></li>
-                <li><a href="spells-research.html" class="hover:text-purple-300 transition">spells-research</a></li>
-                <li><a href="avrae-commands.html" class="font-bold text-purple-300">avrae</a></li>
-            </ul>
+            <!-- Logo -->
+            <a class="text-xl sm:text-2xl medieval">avrae</a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-4 lg:space-x-6 text-sm lg:text-base">
+                <a href="index.html" class="hover:text-purple-300 transition">หน้าแรก</a>
+                <a href="create-character.html" class="hover:text-purple-300 transition">สร้างตัวละคร</a>
+                <a href="rules-system.html" class="hover:text-purple-300 transition">activities</a>
+                <a href="spells-research.html" class="hover:text-purple-300 transition">spells-research</a>
+                <a href="avrae-commands.html" class="font-bold hover:text-purple-300 transition">avrae</a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <div class="md:hidden">
+                <button id="menuBtn" class="text-purple-300 hover:text-white focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden bg-gray-800 md:hidden px-4 py-2 space-y-2 text-sm">
+            <a href="index.html" class="block py-2 hover:text-purple-300 transition">หน้าแรก</a>
+            <a href="create-character.html" class="block py-2 hover:text-purple-300 transition">สร้างตัวละคร</a>
+            <a href="rules-system.html" class="block py-2 hover:text-purple-300 transition">activities</a>
+            <a href="spells-research.html" class="block py-2 hover:text-purple-300 transition">spells-research</a>
+            <a href="avrae-commands.html" class="block font-bold  py-2 hover:text-purple-300 transition">avrae</a>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="flex-grow max-w-6xl mx-auto px-4 py-12 space-y-12">
-        <h1 class="text-4xl text-center mb-6">📜 Avrae Bot Commands</h1>
-        <p class="text-center text-lg opacity-90">คำสั่งใช้งานบอท Avrae สำหรับผู้เล่นใน Discord</p>
+    <!-- Hero -->
+    <section class="bg-gradient-to-b from-gray-900 to-black text-center py-16 px-4">
+        <h1 class="text-4xl md:text-5xl mb-4">Avrae Commands</h1>
+        <p class="text-lg max-w-3xl mx-auto opacity-90">
+            คู่มือคำสั่ง Discord บอท Avrae สำหรับผู้เล่น D&D — ใช้งานง่าย ค้นหาเร็ว พร้อมตัวอย่าง
+        </p>
+        <div class="mt-6 max-w-md mx-auto">
+            <input type="text" placeholder="ค้นหาคำสั่ง เช่น !cast, !init, !check..." x-model="search"
+                class="w-full p-3 rounded-lg search-input text-white placeholder-gray-400" />
+        </div>
+    </section>
 
-        <!-- Import Character -->
-        <section>
-            <h2 class="text-3xl mb-4">📥 เพิ่ม/อัปเดตตัวละคร</h2>
-            <ul class="space-y-2 ml-4 list-disc">
-                <li><code>!beyond <ลิงก์ตัวละคร></code> – นำเข้าจาก Beyond</li>
-                <li><code>!import <ลิงก์ Google Sheets></code> – นำเข้าจาก Google Sheet</li>
-            </ul>
-            <div class="mt-4 space-y-2">
-                <p><code>!g status</code> – ตรวจสอบสถานะตัวละคร</p>
-                <p><code>!update</code> – อัปเดตหลังแก้ไข</p>
-                <p><code>!char delete <ชื่อ></code> – ลบตัวละคร</p>
-                <p><code>!sheet</code> – แสดงชีตตัวละคร</p>
-                <p><code>!portrait</code> – ดูภาพเต็มตัวละคร</p>
-                <p><code>!rollstats</code> – สุ่มสเตตัส 4d6 drop lowest</p>
-                <p><code>!token</code> หรือ <code>!token -border none</code> – สร้างโทเคน</p>
+    <main class="flex-grow max-w-6xl mx-auto px-4 py-12 space-y-10">
+
+        <!-- Character Management -->
+        <section
+            x-show="!search || 'character'.includes(search.toLowerCase()) || 'sheet'.includes(search.toLowerCase())">
+            <h2 class="text-3xl border-l-4 border-green-600 pl-3 mb-6">ตั้งค่าตัวละคร</h2>
+            <div class="bg-gray-800 bg-opacity-70 rounded-xl overflow-hidden">
+                <table class="w-full">
+                    <thead class="bg-gray-700">
+                        <tr>
+                            <th class="text-left p-3">คำสั่ง</th>
+                            <th class="text-left p-3">คำอธิบาย</th>
+                            <th class="text-left p-3">หมายเหตุ</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-700">
+                        <tr x-show="!search || '!ddb'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!ddb</td>
+                            <td>แสดงข้อมูลบัญชี D&D Beyond ของคุณ</td>
+                            <td></td>
+                        </tr>
+                        <tr x-show="!search || '!beyond'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!beyond <url>
+                            </td>
+                            <td>โหลดตัวละครจาก D&D Beyond</td>
+                            <td></td>
+                        </tr>
+                        <tr x-show="!search || '!character'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!character [name]
+                            </td>
+                            <td>สลับตัวละครที่ใช้งาน</td>
+                            <td><code>!char list</code>, <code>!char delete</code></td>
+                        </tr>
+                        <tr x-show="!search || '!sheet'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!sheet</td>
+                            <td>แสดงหน้าตัวละคร</td>
+                            <td></td>
+                        </tr>
+                        <tr x-show="!search || '!portrait'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!portrait</td>
+                            <td>แสดงรูปภาพตัวละคร</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
-        <!-- Dice Roll -->
-        <section>
-            <h2 class="text-3xl mb-4">🎲 การทอยลูกเต๋า</h2>
-            <pre>!r 1d20                 → ทอย 1 ลูก 20 หน้า
-!r 1d20 +5 adv          → ทอย 2 ลูก เอาสูงสุด +5
-!r 1d20 -2 dis          → ทอย 2 ลูก เอาต่ำสุด -2
-!rr 5 1d20 +3 adv       → ทอย 5 ลูก แบบ advantage</pre>
-            <p><code>-sb <bonus></code> – เพิ่มโบนัสให้การเซฟ</p>
-        </section>
-
-        <!-- Save & Check -->
-        <section>
-            <h2 class="text-3xl mb-4">🛡️ การเซฟ (Save) และเช็ก (Check)</h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                    <h3 class="text-xl text-cyan-300">Saving Throw</h3>
-                    <p><code>!save <stat></code> หรือ <code>!s <stat></code></p>
-                    <p>เช่น <code>!s con -b 1d4</code> – เพิ่มโบนัส</p>
-                </div>
-                <div>
-                    <h3 class="text-xl text-green-300">Ability Check</h3>
-                    <p><code>!check <stat></code> หรือ <code>!c <stat></code></p>
-                    <p>เช่น <code>!c dex</code> – เช็กความว่องไว</p>
-                </div>
+        <!-- Combat -->
+        <section x-show="!search || 'init'.includes(search.toLowerCase()) || 'combat'.includes(search.toLowerCase())">
+            <h2 class="text-3xl border-l-4 border-red-600 pl-3 mb-6">การต่อสู้</h2>
+            <div class="bg-gray-800 bg-opacity-70 rounded-xl overflow-hidden">
+                <table class="w-full">
+                    <thead class="bg-gray-700">
+                        <tr>
+                            <th class="text-left p-3">คำสั่ง</th>
+                            <th class="text-left p-3">คำอธิบาย</th>
+                            <th class="text-left p-3">หมายเหตุ</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-700">
+                        <tr x-show="!search || '!init join'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!init join [args]</td>
+                            <td>เข้าร่วมการต่อสู้</td>
+                            <td><code>adv</code>, <code>-h</code> ซ่อน HP, <code>-p 5</code> ตำแหน่งที่ 5</td>
+                        </tr>
+                        <tr x-show="!search || '!init next'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!init next</td>
+                            <td>จบเทิร์น</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
-        <!-- Initiative -->
-        <section>
-            <h2 class="text-3xl mb-4">⚔️ Initiative</h2>
-            <pre>!init begin     → DM เริ่ม combat
-!init join      → ผู้เล่นเข้าร่วม
-!init end       → จบ combat
-!c init         → ดู initiative ตัวเอง
-!init madd      → เพิ่ม modifier</pre>
-        </section>
-
-        <!-- Attack & Spell -->
-        <section>
-            <h2 class="text-3xl mb-4">💥 การโจมตีและเวทมนตร์</h2>
-            <div class="space-y-3">
-                <p><strong>โจมตี:</strong></p>
-                <pre>!attack <weapon>
-!attack <weapon> <target> adv/dis
-!attack sword -rr 2   → โจมตี 2 ครั้ง</pre>
-
-                <p><strong>ร่ายเวท:</strong></p>
-                <pre>!cast fireball -l 3     → ร่ายไฟบอลเลเวล 3
-!cast <spell> -i        → ร่ายเวทนอกชีต
-!g ss 3 +1              → เพิ่ม spell slot เลเวล 3
-!g ss 2 -1              → ลด spell slot
-!sb                     → ดู spellbook</pre>
-
-                <p><strong>ดูข้อมูล:</strong></p>
-                <pre>!spell <name>    → ดูรายละเอียดเวท
-!item <name>     → ดูไอเทม
-!condition <name> → เช่น paralyzed
-!token <name>     → สร้างรูปภาพ</pre>
+        <!-- Attacks & Spells -->
+        <section x-show="!search || 'attack'.includes(search.toLowerCase()) || 'cast'.includes(search.toLowerCase())">
+            <h2 class="text-3xl border-l-4 border-blue-600 pl-3 mb-6">โจมตี, ใช้เวท, การตรวจสอบ</h2>
+            <div class="bg-gray-800 bg-opacity-70 rounded-xl overflow-hidden">
+                <table class="w-full">
+                    <thead class="bg-gray-700">
+                        <tr>
+                            <th class="text-left p-3">คำสั่ง</th>
+                            <th class="text-left p-3">คำอธิบาย</th>
+                            <th class="text-left p-3">ตัวอย่าง</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-700">
+                        <tr x-show="!search || '!attack'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!attack [name] -t <target>
+                            </td>
+                            <td>โจมตีเป้าหมาย</td>
+                            <td><code>!attack dagger -t Orc1 -rr 2</code></td>
+                        </tr>
+                        <tr x-show="!search || '!cast'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!cast [spell] [args]</td>
+                            <td>ใช้เวทมนตร์</td>
+                            <td><code>!cast bless -t Rook -l 3</code></td>
+                        </tr>
+                        <tr x-show="!search || '!check'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!check [skill]
+                            </td>
+                            <td>ตรวจสอบทักษะ</td>
+                            <td><code>!check persuasion dis</code></td>
+                        </tr>
+                        <tr x-show="!search || '!save'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!save [ability]
+                            </td>
+                            <td>ทอยค่ากู้ชีวิต</td>
+                            <td><code>!save death</code></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
-        <!-- HP & Rest -->
-        <section>
-            <h2 class="text-3xl mb-4">❤️ HP และการพักผ่อน</h2>
-            <pre>!g hp +5       → เพิ่มเลือด 5
-!g hp max      → เติมเลือดเต็ม
-!g hp set 10   → ตั้งเลือดเป็น 10
-!g thp +3      → เพิ่ม temporary HP
-
-!g lr          → Long Rest (8 ชม.)
-!g sr          → Short Rest (1 ชม.)</pre>
+        <!-- HP & Counters -->
+        <section x-show="!search || 'hp'.includes(search.toLowerCase()) || 'counter'.includes(search.toLowerCase())">
+            <h2 class="text-3xl border-l-4 border-yellow-600 pl-3 mb-6">HP, Spell Slots, and Counters</h2>
+            <div class="bg-gray-800 bg-opacity-70 rounded-xl overflow-hidden">
+                <table class="w-full">
+                    <thead class="bg-gray-700">
+                        <tr>
+                            <th class="text-left p-3">คำสั่ง</th>
+                            <th class="text-left p-3">คำอธิบาย</th>
+                            <th class="text-left p-3">ตัวอย่าง</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-700">
+                        <tr x-show="!search || '!game hp'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!g hp <change>
+                            </td>
+                            <td>เปลี่ยน HP</td>
+                            <td><code>!g hp +5</code>, <code>!g hp set 20</code></td>
+                        </tr>
+                        <tr x-show="!search || '!g sr'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!g sr</td>
+                            <td>พักสั้น</td>
+                            <td><code>!rest short 2</code> ใช้ 2 ลูกฮิตไดซ์</td>
+                        </tr>
+                        <tr x-show="!search || '!g ss'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!g ss <level>
+                                    <change>
+                            </td>
+                            <td>Change Remaining spell slots</td>
+                            <td><code>!g ss 1 +1</code></td>
+                        </tr>
+                        <tr x-show="!search || '!cc'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!cc [name]
+                                <#>
+                            </td>
+                            <td>Change custom counter</td>
+                            <td><code>!cc 'sorcery points' -2</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
-        <!-- Death Saves -->
-        <section>
-            <h2 class="text-3xl mb-4">💀 การเซฟเมื่อใกล้ตาย</h2>
-            <pre>!g ds          → ทอย death save
-!g ds s        → เพิ่ม success
-!g ds f        → เพิ่ม fail
-!g ds reset    → รีเซ็ต
-
-3 success → ฟื้นที่ 1 HP
-3 fail → ตายถาวร
-เพื่อนช่วยได้ด้วย medicine check (DC 10)</pre>
+        <!-- Lookup -->
+        <section x-show="!search || 'lookup'.includes(search.toLowerCase()) || 'spell'.includes(search.toLowerCase())">
+            <h2 class="text-3xl border-l-4 border-indigo-600 pl-3 mb-6">ค้นหาข้อมูล</h2>
+            <div class="bg-gray-800 bg-opacity-70 rounded-xl overflow-hidden">
+                <table class="w-full">
+                    <thead class="bg-gray-700">
+                        <tr>
+                            <th class="text-left p-3">คำสั่ง</th>
+                            <th class="text-left p-3">คำอธิบาย</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-700">
+                        <tr x-show="!search || '!spell'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!spell [name]
+                            </td>
+                            <td>รายละเอียดเวทมนตร์</td>
+                        </tr>
+                        <tr x-show="!search || '!rule'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!rule [name]
+                            </td>
+                            <td>กฎการเล่น</td>
+                        </tr>
+                        <tr x-show="!search || '!class'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!class [name] [level]</td>
+                            <td>ข้อมูลอาชีพ</td>
+                        </tr>
+                        <tr x-show="!search || '!race'.includes(search.toLowerCase())">
+                            <td class="p-3 font-mono text-purple-300">!race [name]
+                            </td>
+                            <td>ข้อมูลเผ่า</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
-        <!-- Custom Counter -->
-        <section>
-            <h2 class="text-3xl mb-4">🔢 Custom Counter</h2>
-            <pre>!cc create "Sorcery Points"
-!cc "Sorcery Points" +1
-!cc "Sorcery Points" -1
-!cc delete "Sorcery Points"
-
-ตัวอย่าง counter พิเศษ:
-!cc create "Rage" -max 1 -reset long -type bubble</pre>
-        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-center py-6 mt-16 border-t border-gray-800">
-        <p>&copy; 2025 The Spire Tower. โลกแห่งการผจญภัยรอคุณอยู่</p>
+    <footer class="bg-gray-900 text-center py-6 border-t border-gray-800 mt-16">
+        <p>&copy; 2025 The Spire Tower. ทุกการผจญภัยเริ่มจากหนึ่งก้าว...</p>
     </footer>
+
 </body>
 
 </html>
