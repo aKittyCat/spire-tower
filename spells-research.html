@@ -193,15 +193,6 @@
       </div>
     </section>
 
-    <!-- คำเตือน -->
-    <div class="bg-yellow-900 bg-opacity-30 border-l-4 border-yellow-500 p-4 mb-8 rounded">
-      <p class="text-yellow-200"><strong>Note:</strong> เวทย์มนต์ของ Drakkenheim
-        บางอันมีข้อจำกัดที่ต้องสำเร็จก่อนที่จะศึกษาได้ โดยผู้เล่นต้องไปทำใน Live Session และผู้เล่นต้องบันทึกใน
-        <code class="bg-black px-1 rounded">#spells-research</code> ส่วนให้ DM บันทึกผลไว้ใน <code
-          class="bg-black px-1 rounded">#บันทึกเอฟเฟคถาวร</code> เมื่อผู้เล่นทำสำเร็จ
-      </p>
-    </div>
-
     <!-- Dunamancy Spells -->
     <section class="mb-16">
       <h2 class="text-3xl font-semibold mb-6 flex items-center text-cyan-300">
@@ -260,6 +251,14 @@
       </div>
     </section>
 
+    <!-- คำเตือน -->
+    <div class="bg-yellow-900 bg-opacity-30 border-l-4 border-yellow-500 p-4 mb-8 rounded">
+      <p class="text-yellow-200"><strong>Note:</strong> บันทึกการเปลี่ยนแปลงใน
+        <code class="bg-black px-1 rounded">#spells-research</code> โดยใส่ชื่อตัวละคร, รายชื่อเวทย์ที่เอาออก,
+        รายชื่อเวทย์ที่เลือกใหม่, จำนวน Favor ที่ใช้และอย่าลืมบันทึกลงใน Character Tracking Sheet
+      </p>
+    </div>
+
     <!-- Known caster -->
     <section class="mb-16">
       <h2 class="text-3xl font-semibold mb-6 flex items-center text-green-300">
@@ -291,6 +290,7 @@
             <div class="bg-slate-700 px-3 py-2 rounded text-center">Lv.9: <span class="font-bold">110 Favor</span></div>
           </div>
         </div>
+        <strong>⚠️ ตัวละครสามารถเปลี่ยนเวทย์ด้วยวิธีนี้ได้ 1 ครั้งต่อเดือนและเปลี่ยนเวทย์มนต์ได้มากสุดที่ 3 อัน</strong><br>
     </section>
 
     <!-- Wizard-specific spell rules -->
@@ -304,23 +304,22 @@
       <!-- คัตลอกรถเวทย์มนต์ลงใน Spellbook -->
       <h3 class="text-xl font-bold mb-2 text-purple-300">การคัดลอกเวทมนตร์ลงใน Spellbook:</h3>
       <p class="text-gray-300 mb-4">
-        เวทมนตร์ระดับ 1 หรือต่ำกว่าสามารถคัดลอกได้โดยตรง<br>
-        เวทมนตร์ระดับสูงกว่าต้องผ่าน Intelligence (Arcana) check ด้วย DC = 10 + เลเวลของเวทมนตร์<br>
-        ค่าใช้จ่ายและเวลาสำหรับคัดลอกครั้งละ 50 gp (เฉพาะเวทมนตร์ที่อยู่ใน spell scroll)
+        เมื่อตัวละครพบเวทย์มนต์ของ Wizard ที่มีเลเวล 1 หรือมากกว่า ตัวละครสามารถเพิ่มเวทย์มนต์เหล่านั้นลง Spellbook ของพวกเขาได้ โดยทุก 1 เลเวลของเวทย์มนต์นั้นๆ<br>
+        ตัวละครต้องใช้เวลาประมาณ 2 ชั่วโมงและทอง <span class="text-yellow-400">50 gp</span><br>
+        (ค่าใช้จ่ายและเวลาสามารถลดลงครึ่งนึงได้ในบางกรณี)
       </p>
 
       <!-- คัตลอกรถเวทย์มนต์จาก Spell Scroll -->
       <h3 class="text-xl font-bold mb-2 text-purple-300">คัตลอกรถเวทย์มนต์จาก Spell Scroll:</h3>
       <p class="text-gray-300 mb-4">
-        เวทมนตร์ระดับสูงกว่าต้องผ่าน Intelligence (Arcana) check ด้วย DC = 10 + เลเวลของเวทมนตร์<br>
-        หากสำเร็จ สามารถคัดลอกลงใน Spellbook ได้
+        เวทย์มนต์ของ Wizard จาก  spell scroll  สามารถคัดลอกได้โดยตัวละครต้องทำ Intelligence (Arcana) check ด้วย DC เท่ากับ 10 + เลเวลของเวทย์มนต์นั้นๆ<br>
+        เวทย์มนต์จะถูกบันทึกลงใน Spellbook  ถ้าสำเร็จ ส่วน spell scroll จะหายไปไม่ว่าจะคัดลอกสำเร็จหรือไม่
       </p>
 
       <!-- คัตลอกรถเวทย์มนต์จาก Spellbook อื่น -->
       <h3 class="text-xl font-bold mb-2 text-purple-300">คัตลอกรถเวทย์มนต์จาก Spellbook อื่น:</h3>
       <p class="text-gray-300 mb-4">
-        ไม่ต้องทำ Intelligence (Arcana) check<br>
-        ต้นทุน: 350 gp และ 2 Favor
+        วิธีการเหมือนกันกับการคัดลอกจาก spell scroll ไม่ต้องทำ Intelligence (Arcana) check<br>
       </p>
 
       <!-- ตัวอย่างเวทมนตร์ -->
