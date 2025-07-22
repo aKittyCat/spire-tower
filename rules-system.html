@@ -3,9 +3,13 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ระบบเกม | The Spire Tower</title>
-  <script src=" https://cdn.tailwindcss.com "></script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com "></script>
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+  <!-- Custom Styles -->
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -14,135 +18,189 @@
     }
 
     h1,
-    h2 {
+    h2,
+    .medieval {
       font-family: 'MedievalSharp', cursive;
       color: #d8b4fe;
     }
   </style>
 </head>
 
-<body class="min-h-screen flex flex-col">
-  <nav class="bg-gray-900 border-b border-purple-800 p-4">
-    <div class="max-w-6xl mx-auto flex justify-between">
-      <a href="index.html" class="text-2xl">The Spire Tower</a>
-      <div class="space-x-6">
+<body class="min-h-screen flex flex-col bg-gray-900">
+
+  <!-- Navbar -->
+  <nav class="bg-gray-900 border-b border-purple-800 shadow-lg sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="index.html" class="text-xl sm:text-2xl medieval">The Spire Tower</a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-4 lg:space-x-6 text-sm lg:text-base">
         <a href="index.html" class="hover:text-purple-300 transition">หน้าแรก</a>
         <a href="create-character.html" class="hover:text-purple-300 transition">สร้างตัวละคร</a>
         <a href="rules-system.html" class="font-bold hover:text-purple-300 transition">activities</a>
         <a href="spells-research.html" class="hover:text-purple-300 transition">spells-research</a>
-        <a href="word-map.html" class="hover:text-purple-300 transition">world map</a>
+        <a href="world-map.html" class="hover:text-purple-300 transition">world map</a>
       </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="md:hidden">
+        <button id="menuBtn" class="text-purple-300 hover:text-white focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden bg-gray-800 md:hidden px-4 py-2 space-y-2 text-sm">
+      <a href="index.html" class="block py-2 hover:text-purple-300 transition">หน้าแรก</a>
+      <a href="create-character.html" class="block py-2 hover:text-purple-300 transition">สร้างตัวละคร</a>
+      <a href="rules-system.html" class="block font-bold py-2 hover:text-purple-300 transition">activities</a>
+      <a href="spells-research.html" class="block py-2 hover:text-purple-300 transition">spells-research</a>
+      <a href="world-map.html" class="block py-2 hover:text-purple-300 transition">world map</a>
     </div>
   </nav>
 
-  <main class="flex-grow max-w-6xl mx-auto p-6">
-    <!-- <h1 class="text-4xl text-center mb-8">Activities</h1> -->
-    <div class="bg-gray-800 p-8 rounded-xl">
-      <!-- Training -->
-      <h1 class="text-3xl text-center mb-8">Training</h1>
-      <p class="text-lg">
-        ตัวละครสามารถฝึกฝนเพื่อเพิ่มทักษะให้ตัวเองได้โดยจ่ายทองจำนวน 25 gp และ 2 Favor
-        ทุกครั้งก่อนเริ่มและระหว่างการฝึกฝน โดยตัวละครสามารถทำการฝึกฝนได้หนึ่งครั้งในทุกๆ 12 ชั่วโมง
-        <br>คำสั่งสำหรับเริ่มทำการฝึกฝน:
-      <blockquote class="text-purple-300 mt-4 border-l-2 pl-4 border-purple-500">
-        !train "ชื่อสิ่งที่จะเรียน" "-b สำหรับโบนัสต่างๆ(ถ้ามี)"
-      </blockquote>
-      <br>*หลังจากใช้คำสั่งเพื่อเริ่มฝึกฝนแล้ว สามารถใช้แค่คำสั่ง !train "-b สำหรับโบนัสต่างๆ(ถ้ามี)"
-      เพื่อทำการฝึกฝนต่อได้
-      <br>สิ่งที่ตัวละครสามารถฝึกฝนได้:
-      <br>- ภาษา
-      <br>- Tool Proficiency
-      <br>- Gaming Set Proficiency
-      <br>- Weapon Proficiency (**ยกเว้น** firearm)
-      <br>*หากไม่สามารถทำการฝึกฝนในบางอย่างได้ ให้แจ้งสตาฟหรือส่งคำร้องใน ห้อง ticket เพื่อให้สตาฟดำเนินการแก้ไข
-      </p>
-      <br>
-      <!-- Crafting -->
-      <h1 class="text-3xl text-center mb-8">Crafting</h1>
-      <p class="text-lg">
-        - ตัวละครต้องมี proficient เกี่ยวกับเครื่องมือที่จะใช้สร้างของ เช่น Smith's Tools สำหรับอาวุธและเกราะ
-        <br>- ผู้เล่นต้องจ่ายค่าใช้จ่ายและ Favor ก่อนเริ่มสร้างของ
-        <br>- ผู้เล่นสามารถยกเลิกการสร้างของได้โดยใช้คำสั่ง !craft discard
-        แต่ค่าใช้จ่ายทุกอย่างและเวลาที่ใช้ไปจะไม่ได้รับคืน
-        <br>- ไอเทม Artifact, ไอเทมระดับ Legendary และบางไอเทมในระดับอื่นๆจะได้จากการสร้างเท่านั้น
+  <!-- Main Content -->
+  <main class="flex-grow max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+    <!-- <h1 class="text-3xl sm:text-4xl text-center mb-10 medieval">Activities</h1> -->
 
-        <br>คำสั่งสำหรับสร้างของ:
-      <blockquote class="text-purple-300 mt-4 border-l-2 pl-4 border-purple-500">
-        !craft "ระดับไอเทม" "ประเภท" "ชื่อไอเทม" "Stat ที่ใช้" + โบนัสอื่นๆ เช่น Prof. bonus, Guidance, Flash of Genius,
-        etc
-        <br> ตัวอย่าง การสร้าง +1 Longsword โดยใช้ Smith's tools และใช้ Guidance:
-        <br>!craft uncommom permanent "+1 Longsword" str -b 4+d4
-        <br>ตัวอย่าง การสร้าง Potion of Healing โดยใช้ Brewer's supplies และใช้ Flash of Genius:
-        <br>!craft common "single use" "Potion of Healing" wis -b 4+5
-      </blockquote>
-      <p class="text-2xl">
-        <br>**ถ้าชื่อไอเทมมีเว้นวรรค ให้ใส่ " " ด้วย
-      </p>
-      <p class="text-xl">
-        <br>สามารถคลิ้กที่รูปเพื่อขยายภาพขนาดใหญ่ได้
-      </p>
-      </p>
-      <a href="/pic/Crafting3.png" target="_blank" class="block relative">
-        <img src="pic/Crafting3.png" alt="Crafting" class="bg-gray-700 p-4 rounded-lg text-center" />
-      </a>
-      <br>
-      <!-- Casino -->
-      <h1 class="text-3xl text-center mb-8">Casino</h1>
-      <p class="text-lg">
-        วิธีใช้งานคาสิโน:
-        ใช้คำสั่ง !gamble ตามด้วยจำนวนทองที่จะใช้เดิมพัน โดยทองขั้นต่ำจะอยู่ที่ 25gp และสูงสุดอยู่ที่ 1000gp
-        รวมถึงต้องใช้ 2 Favor ต่อการพนัน 1 ครั้งและผู้เล่นต้องลงบันทึกก่อนใช้งาน
-        <br>คำสั่งเพื่อเดิมพัน:
-      <blockquote class="text-purple-300 mt-4 border-l-2 pl-4 border-purple-500">
-        ตัวอย่างการลงบันทึก:
-        สมศรี หมายมอง เดิมพันทองจำนวน 500gp
-        <br>
-        <br>ตัวอย่างคำสั่ง: !gamble ตามด้วยจำนวนเงิน
-        <br>*ก่อนเริ่มใช้งานคำสั่ง ให้ใช้คำสั่ง !dt on ก่อน จากนั้นถึงจะใช้คำสั่ง !gamble ได้
-      </blockquote>
-      <br>DCสำหรับเดิมพันจะอยู่ที่ 2d10+5 เพื่อสุ่มว่าผู้เล่นจะได้เจอผู้เล่นระดับไหน จากนั้นระบบจะใช้ค่าทักษะ Insight,
-      <br>Deception, และ Intimidation ทั้ง 3 อย่างมาตัดสินผล
-      <br>
-      <br>ผลออกมาไม่สำเร็จทั้งหมด - เสียทองเดิมพันทั้งหมด
-      <br>ผลออกมาสำเร็จ 1อัน - เสียทองเดิมพันครึ่งนึง
-      <br>ผลออกมาสำเร็จ 2อัน - ได้รับทองเท่ากับจำนวนที่ใช้เดิมพันและบวกเพิ่มอีกครึ่งนึง
-      <br>ผลออกมาสำเร็จทั้งหมด - ได้รับทองเท่ากับสองเท่าของเงินเดิมพัน
-      </p>
-      <br>
-      <!-- lottery -->
-      <h1 class="text-3xl text-center mb-8">lottery</h1>
-      <p class="text-lg">
-        อยากเล่นLotteryต้องทำยังไง?!
-        จ่ายเงินจำนวน 100 GP โดยใช้คำสั่ง !coins -100 ก่อนใช้ command !lottery จากนั้นก็สวดมนต์ขอพร
-        <br>คำสั่ง:
-      <blockquote class="text-purple-300 mt-4 border-l-2 pl-4 border-purple-500">
-        !coins -100
-        <br>!lottery
-      </blockquote>
-      <br>รางวัลที่จะได้:
-      <br>1-41: หวยกิน รอบหน้าลองใหม่ 😦
-      <br>42-69: รางวัลปลอบใจ - ทอง 69 GP
-      <br>70-80: ได้เงินคืนครึ่งนึง
-      <br>81-89: ได้เงินคืนเต็มจำนวน
-      <br>90-92: 25 Favor สำหรับตัวละคร
-      <br>93-95: ชั่วโมงเล่น 4 ชั่วโมงสำหรับตัวละคร
-      <br>96-97: รางวัลเลขท้าย 2 ตัว - ทอง 1,000 GP
-      <br>98-99: รางวัลเลขท้าย 3 ตัว - ทอง 1,500 GP
-      <br>100: รางวัลที่1!! ทอง 5,000 GP
-      <div class="bg-gray-700 p-4 rounded-lg text-center">
-        <img src="pic/lottery.png" alt="lottery" class="rounded-lg mx-auto">
-      </div>
-      </p>
+    <div class="bg-gray-800 p-6 sm:p-8 rounded-xl shadow-lg space-y-10">
 
+      <!-- Training Section -->
+      <section>
+        <h2 class="text-2xl sm:text-3xl text-center mb-6 medieval">Training</h2>
+        <p class="text-base sm:text-lg leading-relaxed">
+          ตัวละครสามารถฝึกฝนเพื่อเพิ่มทักษะได้โดยจ่ายทองจำนวน <strong>25 GP</strong> และ <strong>2 Favor</strong>
+          ต่อครั้ง
+          สามารถฝึกได้ทุกๆ 12 ชั่วโมง
+        </p>
+        <blockquote class="text-purple-300 mt-4 border-l-4 pl-4 border-purple-500 italic text-sm sm:text-base">
+          !train "ชื่อสิ่งที่จะเรียน" "-b สำหรับโบนัสต่างๆ (ถ้ามี)"
+        </blockquote>
+        <p class="mt-3 text-sm sm:text-base">
+          *หลังจากใช้คำสั่งเพื่อเริ่มฝึกฝนแล้ว สามารถใช้แค่ <code
+            class="bg-gray-700 px-2 py-1 rounded">คำสั่ง !train "-b สำหรับโบนัสต่างๆ(ถ้ามี)"</code>
+          เพื่อทำการฝึกฝนต่อได้<br>
+          สิ่งที่ตัวละครสามารถฝึกฝนได้:
+        <ul class="list-disc list-inside ml-4 mt-2 space-y-1">
+          <li>ภาษา</li>
+          <li>Tool Proficiency</li>
+          <li>Gaming Set Proficiency</li>
+          <li>Weapon Proficiency (**ยกเว้น firearm**)</li>
+        </ul>
+        *หากไม่สามารถทำการฝึกฝนในบางอย่างได้ ให้แจ้งสตาฟหรือส่งคำร้องใน ห้อง ticket เพื่อให้สตาฟดำเนินการแก้ไข
+        </p>
+      </section>
+
+      <!-- Crafting Section -->
+      <section>
+        <h2 class="text-2xl sm:text-3xl text-center mb-6 medieval">Crafting</h2>
+        <p class="text-base sm:text-lg leading-relaxed">
+          - ตัวละครต้องมี proficient เกี่ยวกับเครื่องมือที่จะใช้สร้างของ เช่น Smith's Tools สำหรับอาวุธและเกราะ<br>
+          - ผู้เล่นต้องจ่ายค่าใช้จ่ายและ Favor ก่อนเริ่มสร้างของ<br>
+          - ผู้เล่นสามารถยกเลิกการสร้างของได้โดยใช้คำสั่ง <code
+            class="bg-gray-700 px-2 py-1 rounded">!craft discard</code>
+          แต่ค่าใช้จ่ายทุกอย่างและเวลาที่ใช้ไปจะไม่ได้รับคืน<br>
+          - ไอเทม Artifact, ไอเทมระดับ Legendary และบางไอเทมในระดับอื่นๆจะได้จากการสร้างเท่านั้น
+        </p>
+        <blockquote class="text-purple-300 mt-4 border-l-4 pl-4 border-purple-500 text-xs sm:text-sm leading-relaxed">
+          <strong>คำสั่ง:</strong><br>
+          !craft "ระดับไอเทม" "ประเภท" "ชื่อไอเทม" "Stat ที่ใช้" + โบนัสอื่นๆ เช่น Prof. bonus, Guidance, Flash of
+          Genius, etc<br><br>
+          <strong>ตัวอย่างการสร้าง +1 Longsword โดยใช้ Smith's tools และใช้ Guidance:</strong><br>
+          !craft uncommom permanent "+1 Longsword" str -b 4+d4<br>
+          <strong>ตัวอย่างการสร้าง Potion of Healing โดยใช้ Brewer's supplies และใช้ Flash of Genius:</strong><br>
+          !craft common "single use" "Potion of Healing" wis -b 4+5
+        </blockquote>
+        <p class="text-sm sm:text-lg mt-3">
+          <strong>หมายเหตุ:</strong> ถ้าชื่อไอเทมมีช่องเว้นวรรค ให้ใส่เครื่องหมาย " " ด้วย<br>
+          <span class="text-yellow-300">คลิกที่รูปเพื่อดูขนาดใหญ่</span>
+        </p>
+        <a href="pic/Crafting3.png" target="_blank" class="block mt-4 bg-gray-700 p-4 rounded-lg text-center">
+          <img src="pic/Crafting3.png" alt="Crafting Guide"
+            class="w-full mx-auto rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+        </a>
+      </section>
+
+      <!-- Casino Section -->
+      <section>
+        <h2 class="text-2xl sm:text-3xl text-center mb-6 medieval">Casino</h2>
+        <p class="text-base sm:text-lg leading-relaxed">
+          วิธีใช้งานคาสิโน: ใช้คำสั่ง <code
+            class="bg-gray-700 px-2 py-1 rounded">!gamble ตามด้วยจำนวนทองที่จะใช้เดิมพัน</code><br>
+          โดยทองขั้นต่ำจะอยู่ที่ 25gp และสูงสุดอยู่ที่ 1000gp<br>
+          รวมถึงต้องใช้ <strong>2 Favor</strong> ต่อการพนัน 1 ครั้งและผู้เล่นต้องลงบันทึกก่อนใช้งาน
+        </p>
+        <blockquote class="text-purple-300 mt-4 border-l-4 pl-4 border-purple-500 text-xs sm:text-sm">
+          <strong>ตัวอย่าง:</strong><br>
+          1. ใช้คำสั่ง <code>!dt on</code><br>
+          2. ลงบันทึก: "สมศรี เดิมพัน 500gp"<br>
+          3. พิมพ์: <code>!gamble 500</code>
+        </blockquote>
+        <p class="mt-3 text-sm sm:text-base">
+          DC สำหรับเดิมพันจะอยู่ที่ 2d10+5 เพื่อสุ่มว่าผู้เล่นจะได้เจอผู้เล่นระดับไหน จากนั้นระบบจะใช้ค่าทักษะ Insight,
+          Deception, และ Intimidation<br> ทั้ง 3 อย่างมาตัดสินผล
+        </p>
+        <ul class="list-disc list-inside ml-5 mt-2 text-sm sm:text-base space-y-1">
+          <li><strong>ผลออกมาไม่สำเร็จทั้งหมด:</strong> เสียทองเดิมพันทั้งหมด</li>
+          <li><strong>ผลออกมาสำเร็จ 1 อัน:</strong> เสียทองเดิมพันครึ่งนึง</li>
+          <li><strong>ผลออกมาสำเร็จ 2 อัน:</strong> ได้รับทองเท่ากับจำนวนที่ใช้เดิมพันและบวกเพิ่มอีกครึ่งนึง</li>
+          <li><strong>ผลออกมาสำเร็จทั้งหมด:</strong> ได้รับทองเท่ากับสองเท่าของเงินเดิมพัน</li>
+        </ul>
+      </section>
+
+      <!-- Lottery Section -->
+      <section>
+        <h2 class="text-2xl sm:text-3xl text-center mb-6 medieval">Lottery</h2>
+        <p class="text-base sm:text-lg leading-relaxed">
+          อยากเล่น Lottery ต้องทำยังไง?! จ่ายเงินจำนวน <strong>100 GP</strong> แล้วใช้คำสั่ง: !coins -100 ก่อนใช้
+          command !lottery จากนั้นก็สวดมนต์ขอพร
+        </p>
+        <blockquote class="text-purple-300 mt-4 border-l-4 pl-4 border-purple-500 text-sm">
+          <strong>ตัวอย่าง:</strong><br>
+          !coins -100<br>
+          !lottery
+        </blockquote>
+        <p class="mt-3 text-sm sm:text-base">
+          <strong>ผลรางวัล:</strong>
+        <ul class="list-disc list-inside ml-5 mt-2 space-y-1">
+          <li><strong>1-41:</strong> หวยกิน รอบหน้าลองใหม่ 😦</li>
+          <li><strong>42-69:</strong> รางวัลปลอบใจ - ทอง 69 GP</li>
+          <li><strong>70-80:</strong> ได้เงินคืนครึ่งหนึ่ง</li>
+          <li><strong>81-89:</strong> ได้เงินคืนเต็มจำนวน</li>
+          <li><strong>90-92:</strong> 25 Favor สำหรับตัวละคร</li>
+          <li><strong>93-95:</strong> ชั่วโมงเล่น 4 ชั่วโมงสำหรับตัวละคร</li>
+          <li><strong>96-97:</strong> ทอง 1,000 GP (เลขท้าย 2 ตัว)</li>
+          <li><strong>98-99:</strong> ทอง 1,500 GP (เลขท้าย 3 ตัว)</li>
+          <li><strong>100:</strong> 🎉 รางวัลที่ 1! ทอง 5,000 GP</li>
+        </ul>
+        </p>
+        <a href="pic/lottery.png" target="_blank" class="block mt-4">
+          <img src="pic/lottery.png" alt="Lottery Prize"
+            class="w-full max-w-xs sm:max-w-sm mx-auto rounded-lg shadow-md hover:scale-105 transition-transform duration-300">
+        </a>
+      </section>
 
     </div>
-
-
   </main>
 
-  <footer class="bg-gray-900 text-center py-6">
-    <p>&copy; 2025 The Spire Tower</p>
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-center py-6 text-sm text-gray-400 border-t border-gray-800">
+    <p>&copy; 2025 The Spire Tower. โลกแห่งการผจญภัยรอคุณอยู่</p>
   </footer>
+
+  <!-- JavaScript for Mobile Menu -->
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
 </body>
 
 </html>

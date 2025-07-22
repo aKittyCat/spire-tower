@@ -17,16 +17,40 @@
 <body class="bg-gradient-to-br from-slate-900 to-slate-800 text-white min-h-screen">
 
   <!-- Navbar -->
-  <nav class="bg-gray-900 border-b shadow-lg sticky top-0 z-50">
+  <nav class="bg-gray-900 border-b border-purple-800 shadow-lg sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <h1 class="text-2xl">The Spire Tower</h1>
+      <!-- Logo / Title -->
+      <h1 class="text-2xl font-bold text-white">The Spire Tower</h1>
+
+      <!-- Desktop Menu (แสดงบน md ขึ้นไป) -->
       <ul class="hidden md:flex space-x-6">
-        <li><a href="index.html" class="hover:text-purple-300 transition">หน้าแรก</a></li>
-        <li><a href="create-character.html" class="hover:text-purple-300 transition">สร้างตัวละคร</a></li>
-        <li><a href="rules-system.html" class="hover:text-purple-300 transition">activities</a></li>
-        <li><a href="spells-research.html" class="font-bold hover:text-purple-300 transition">spells-research</a></li>
-        <li><a href="word-map.html" class="hover:text-purple-300 transition">world map</a></li>
+        <li><a href="index.html" class="font-bold text-purple-300 hover:text-purple-100 transition">หน้าแรก</a></li>
+        <li><a href="create-character.html" class="text-gray-300 hover:text-purple-300 transition">สร้างตัวละคร</a></li>
+        <li><a href="rules-system.html" class="text-gray-300 hover:text-purple-300 transition">activities</a></li>
+        <li><a href="spells-research.html" class="text-gray-300 hover:text-purple-300 transition">spells-research</a>
+        </li>
+        <li><a href="world-map.html" class="text-gray-300 hover:text-purple-300 transition">world map</a></li>
       </ul>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="md:hidden">
+        <button id="menuBtn" class="text-gray-300 hover:text-white focus:outline-none">
+          <!-- Hamburger Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu (เริ่มต้นซ่อน) -->
+    <div id="mobileMenu" class="hidden bg-gray-800 md:hidden px-4 py-2 space-y-2">
+      <a href="index.html" class="block text-purple-300 hover:text-purple-100 transition py-2">หน้าแรก</a>
+      <a href="create-character.html" class="block text-gray-300 hover:text-purple-300 transition py-2">สร้างตัวละคร</a>
+      <a href="rules-system.html" class="block text-gray-300 hover:text-purple-300 transition py-2">activities</a>
+      <a href="spells-research.html"
+        class="font-bold block text-gray-300 hover:text-purple-300 transition py-2">spells-research</a>
+      <a href="world-map.html" class="block text-gray-300 hover:text-purple-300 transition py-2">world map</a>
     </div>
   </nav>
 
@@ -40,7 +64,8 @@
     <div class="bg-yellow-900 bg-opacity-30 border-l-4 border-yellow-500 p-4 mb-8 rounded">
       <p class="text-yellow-200"><strong>Note:</strong> เวทมนตร์บางชนิดต้องผ่าน Live Session และผู้เล่นต้องบันทึกใน
         <code class="bg-black px-1 rounded">#spells-research</code> ส่วนให้ DM บันทึกผลไว้ใน <code
-          class="bg-black px-1 rounded">#บันทึกเอฟเฟคถาวร</code> เมื่อผู้เล่นทำสำเร็จ</p>
+          class="bg-black px-1 rounded">#บันทึกเอฟเฟคถาวร</code> เมื่อผู้เล่นทำสำเร็จ
+      </p>
     </div>
 
     <!-- Drakkenheim Spells -->
@@ -85,7 +110,8 @@
           <div class="bg-slate-700 rounded-lg p-4 border border-slate-600">
             <h3 class="font-bold text-purple-300 mb-2">ระดับ 3</h3>
             <ul class="space-y-1 text-sm">
-              <li class="text-gray-200">• Purge Contamination <br>[Bard, Cleric, Druid, Paladin, Ranger, Sorcerer, Warlock, Wizard]</li>
+              <li class="text-gray-200">• Purge Contamination <br>[Bard, Cleric, Druid, Paladin, Ranger, Sorcerer,
+                Warlock, Wizard]</li>
               <li class="text-gray-200">• Ride the Rifts [Bard, Sorcerer, Warlock, Wizard]</li>
             </ul>
           </div>
@@ -104,7 +130,8 @@
             <h3 class="font-bold text-purple-300 mb-2">ระดับ 5</h3>
             <ul class="space-y-1 text-sm">
               <li class="text-gray-200">• Conjure the Deep Haze [Druid, Sorcerer, Warlock, Wizard]</li>
-              <li class="text-gray-200">• Neutralizing Field <br>[(ข้อจำกัด: ต้องศึกษา Purge Contamination และเคยสร้าง Aqua Expurgo อย่างน้อย 1 อัน) Bard, Cleric, Druid, Paladin, Ranger, Sorcerer, Warlock, Wizard]</li>
+              <li class="text-gray-200">• Neutralizing Field <br>[(ข้อจำกัด: ต้องศึกษา Purge Contamination และเคยสร้าง
+                Aqua Expurgo อย่างน้อย 1 อัน) Bard, Cleric, Druid, Paladin, Ranger, Sorcerer, Warlock, Wizard]</li>
             </ul>
           </div>
 
@@ -113,7 +140,9 @@
             <h3 class="font-bold text-purple-300 mb-2">ระดับ 6</h3>
             <ul class="space-y-1 text-sm">
               <li class="text-gray-200">• Ray of Contamination [Druid, Sorcerer, Warlock, Wizard]</li>
-              <li class="text-gray-200">• Siphon Contamination <br>[(ข้อจำกัด: ต้องศึกษา Forced Evolution และ Neutralizing Field ก่อน รวมถึงต้องเคยเห็น Monstrous Transformation เกิดขึ้น) Sorcerer, Warlock, Wizard]</li>
+              <li class="text-gray-200">• Siphon Contamination <br>[(ข้อจำกัด: ต้องศึกษา Forced Evolution และ
+                Neutralizing Field ก่อน รวมถึงต้องเคยเห็น Monstrous Transformation เกิดขึ้น) Sorcerer, Warlock, Wizard]
+              </li>
             </ul>
           </div>
 
@@ -121,7 +150,8 @@
           <div class="bg-slate-700 rounded-lg p-4 border border-slate-600">
             <h3 class="font-bold text-purple-300 mb-2">ระดับ 7</h3>
             <ul class="space-y-1 text-sm">
-              <li class="text-gray-200">• Contamination Immunity [(ข้อจำกัด: ต้องศึกษา Neutralizing Field ก่อน) Bard, Cleric, Druid, Sorcerer, Warlock, Wizard]</li>
+              <li class="text-gray-200">• Contamination Immunity [(ข้อจำกัด: ต้องศึกษา Neutralizing Field ก่อน) Bard,
+                Cleric, Druid, Sorcerer, Warlock, Wizard]</li>
               <li class="text-gray-200">• Octarine Spray [Bard, Sorcerer, Warlock, Wizard]</li>
             </ul>
           </div>
@@ -130,7 +160,8 @@
           <div class="bg-slate-700 rounded-lg p-4 border border-slate-600">
             <h3 class="font-bold text-purple-300 mb-2">ระดับ 8</h3>
             <ul class="space-y-1 text-sm">
-              <li class="text-gray-200">• Contaminated Power <br>[(ข้อจำกัด: ต้องศึกษาเวทย์ contamination อื่นๆทั้งหมดและต้องเคยร่ายทุกอันอย่างน้อย 1 ครั้ง)Sorcerer, Warlock, Wizard]</li>
+              <li class="text-gray-200">• Contaminated Power <br>[(ข้อจำกัด: ต้องศึกษาเวทย์ contamination
+                อื่นๆทั้งหมดและต้องเคยร่ายทุกอันอย่างน้อย 1 ครั้ง)Sorcerer, Warlock, Wizard]</li>
             </ul>
           </div>
 
@@ -138,7 +169,8 @@
           <div class="bg-slate-700 rounded-lg p-4 border border-slate-600">
             <h3 class="font-bold text-purple-300 mb-2">ระดับ 9</h3>
             <ul class="space-y-1 text-sm">
-              <li class="text-gray-200">• Sacrament of the Falling Fire <br>[(ต้องทำใน Live Session) Bard, Cleric, Druid, Warlock]</li>
+              <li class="text-gray-200">• Sacrament of the Falling Fire <br>[(ต้องทำใน Live Session) Bard, Cleric,
+                Druid, Warlock]</li>
             </ul>
           </div>
         </div>
@@ -244,8 +276,18 @@
 
   <!-- Footer -->
   <footer class="text-center py-6 text-gray-500 text-sm border-t border-slate-700 mt-12">
-    © 2025 Drakkenheim RPG System | สำหรับใช้เฉพาะในเกมเท่านั้น
+    &copy; 2025 The Spire Tower. โลกแห่งการผจญภัยรอคุณอยู่
   </footer>
+
+  <!-- JavaScript สำหรับเปิด/ปิดเมนูมือถือ -->
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
 
 </body>
 

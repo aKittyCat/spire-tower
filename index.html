@@ -42,7 +42,7 @@
         <li><a href="rules-system.html" class="text-gray-300 hover:text-purple-300 transition">activities</a></li>
         <li><a href="spells-research.html" class="text-gray-300 hover:text-purple-300 transition">spells-research</a>
         </li>
-        <li><a href="word-map.html" class="text-gray-300 hover:text-purple-300 transition">world map</a></li>
+        <li><a href="world-map.html" class="text-gray-300 hover:text-purple-300 transition">world map</a></li>
       </ul>
 
       <!-- Mobile Hamburger Button -->
@@ -63,7 +63,7 @@
       <a href="rules-system.html" class="block text-gray-300 hover:text-purple-300 transition py-2">activities</a>
       <a href="spells-research.html"
         class="block text-gray-300 hover:text-purple-300 transition py-2">spells-research</a>
-      <a href="word-map.html" class="block text-gray-300 hover:text-purple-300 transition py-2">world map</a>
+      <a href="world-map.html" class="block text-gray-300 hover:text-purple-300 transition py-2">world map</a>
     </div>
   </nav>
 
@@ -223,6 +223,16 @@
   <footer class="bg-gray-900 text-center py-6 mt-16 border-t border-gray-800">
     <p>&copy; 2025 The Spire Tower. โลกแห่งการผจญภัยรอคุณอยู่</p>
   </footer>
+
+  <!-- JavaScript สำหรับเปิด/ปิดเมนูมือถือ -->
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
 
 </body>
 
