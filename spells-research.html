@@ -13,7 +13,10 @@
       background: #0f0f1a;
       color: #e0e0ff;
     }
-    h1, h2, .medieval {
+
+    h1,
+    h2,
+    .medieval {
       font-family: 'MedievalSharp', cursive;
       color: #d8b4fe;
     }
@@ -33,7 +36,8 @@
         <li><a href="index.html" class="text-purple-300 hover:text-purple-100 transition">หน้าแรก</a></li>
         <li><a href="create-character.html" class="text-gray-300 hover:text-purple-300 transition">สร้างตัวละคร</a></li>
         <li><a href="rules-system.html" class="text-gray-300 hover:text-purple-300 transition">activities</a></li>
-        <li><a href="spells-research.html" class="font-bold text-gray-300 hover:text-purple-300 transition">spells-research</a>
+        <li><a href="spells-research.html"
+            class="font-bold text-gray-300 hover:text-purple-300 transition">spells-research</a>
         </li>
         <li><a href="world-map.html" class="text-gray-300 hover:text-purple-300 transition">world map</a></li>
       </ul>
@@ -192,8 +196,11 @@
       <div class="bg-slate-800 bg-opacity-70 p-6 rounded-xl shadow-lg border border-slate-700">
         <p class="text-gray-300 mb-4">
           <strong>เงื่อนไข:</strong> ต้องมี <span class="text-green-400">5 Favor</span> และเสีย <span
-            class="text-blue-400">50 GP</span> ต่อเวท<br>
-          🔍 ต้องผ่าน <strong>Intelligence Check</strong> DC = 10 + ระดับเวท + ความสำเร็จ
+            class="text-blue-400">50 GP</span> ทุกๆ 1 เลเวลต่อเวทย์ที่จะเรียน ยกเว้น Wizard สาย Chronurgy และ
+          Graviturgy<br>
+          🔍 ต้องผ่าน <strong>Intelligence Check</strong> เพื่อเรียน Dunamancy spell <span class="text-blue-400">โดย DC
+            จะอยู่ที่ 10 + เลเวลของเวทย์ที่จะเรียน</span><br>
+          ตัวละครสามารถรับโบนัส +1 ได้โดยจ่ายทองเพิ่ม 100 gp โดยสามารถได้รับโบนัสได้มากสุดที่ +6
         </p>
 
         <!-- ตารางค่า Favor ที่ต้องใช้ -->
@@ -216,16 +223,30 @@
 
         <!-- ประเภทตัวละครที่ใช้ได้ -->
         <div class="mt-8">
-          <h3 class="font-semibold text-cyan-200 mb-3">คลาสที่สามารถเรียนได้</h3>
+          <h3 class="font-semibold text-cyan-200 mb-3">วิธีเพิ่มเวทย์ Dunamancy<br>ถ้าตัวละครเรียนเวทย์สายนี้สำเร็จ
+            ตัวละครเพิ่มเวทย์นั้นๆตามรูปแบบของคลาส:</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
             <div>
+              <div>
+                <h4 class="font-medium text-yellow-300">Wizard</h4>
+                <p class="text-gray-300">เพิ่มลงใน Spellbook</p>
+              </div>
+              <div>
+                <h4 class="font-medium text-yellow-300">Warlock</h4>
+                <p class="text-gray-300">สามารถแทนที่ Mystic Arcanum สำหรับเวทย์เลเวล 6, 7, 8 และ 9 ที่มีอยู่แล้วได้</p>
+              </div>
               <h4 class="font-medium text-yellow-300">Known Caster</h4>
-              <p class="text-gray-300">Sorcerer, Warlock, Bard, Ranger, Arcane Trickster Rogue, Eldritch Knight Fighter,
-                Profane Soul Blood Hunter, Heretic Jaeger</p>
+              <p class="text-gray-300">
+                ถ้าตัวละครเป็นคลาสสายที่เลือกเวทย์มนต์ใหม่และจะไม่สามารถเปลี่ยนได้จนกว่าจะเลเวลอัพ<br>
+                Sorcerer, Warlock, Bard, Ranger, Arcane Trickster Rogue, Eldritch Knight Fighter,
+                Profane Soul Blood Hunter, Heretic Jaeger<br> แล้วเปลี่ยนใจอยากเลือกเวทย์มนต์อื่นแทน ตัวละครสามารถใช้
+                Favor
+                เพื่อเปลี่ยนเวทย์มนต์เหล่านั้นได้โดยจำนวน Favor ที่ใช้จะขึ้นอยู่กับเลเวลของเวทย์นั้นๆ</p>
             </div>
             <div>
               <h4 class="font-medium text-yellow-300">Prepared Caster</h4>
-              <p class="text-gray-300">Artificer, Druid, Cleric, Paladin</p>
+              <p class="text-gray-300">Artificer, Druid, Cleric, Paladin<br>
+                เพิ่มลงในเวทย์ที่สามารถเปลี่ยนได้</p>
             </div>
           </div>
         </div>
