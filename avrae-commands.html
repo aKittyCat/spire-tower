@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avrae Commands | The Spire Tower</title>
+    <script src="https://cdn.tailwindcss.com "></script>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #0f0f1a;
+            color: #e0e0ff;
+        }
+
+        h1,
+        h2,
+        h3,
+        .medieval {
+            font-family: 'MedievalSharp', cursive;
+            color: #d8b4fe;
+        }
+
+        code {
+            @apply bg-gray-900 text-green-300 px-2 py-1 rounded font-mono text-sm;
+        }
+
+        pre {
+            @apply bg-gray-800 p-4 rounded-lg border-l-4 border-purple-600 overflow-x-auto;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-900 border-b border-purple-800 shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-2xl medieval">The Spire Tower</a>
+            <ul class="hidden md:flex space-x-6">
+                <li><a href="index.html" class="hover:text-purple-300 transition">หน้าแรก</a></li>
+                <li><a href="create-character.html" class="hover:text-purple-300 transition">สร้างตัวละคร</a></li>
+                <li><a href="rules-system.html" class="hover:text-purple-300 transition">activities</a></li>
+                <li><a href="spells-research.html" class="hover:text-purple-300 transition">spells-research</a></li>
+                <li><a href="avrae-commands.html" class="font-bold text-purple-300">avrae</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-6xl mx-auto px-4 py-12 space-y-12">
+        <h1 class="text-4xl text-center mb-6">📜 Avrae Bot Commands</h1>
+        <p class="text-center text-lg opacity-90">คำสั่งใช้งานบอท Avrae สำหรับผู้เล่นใน Discord</p>
+
+        <!-- Import Character -->
+        <section>
+            <h2 class="text-3xl mb-4">📥 เพิ่ม/อัปเดตตัวละคร</h2>
+            <ul class="space-y-2 ml-4 list-disc">
+                <li><code>!beyond <ลิงก์ตัวละคร></code> – นำเข้าจาก Beyond</li>
+                <li><code>!import <ลิงก์ Google Sheets></code> – นำเข้าจาก Google Sheet</li>
+            </ul>
+            <div class="mt-4 space-y-2">
+                <p><code>!g status</code> – ตรวจสอบสถานะตัวละคร</p>
+                <p><code>!update</code> – อัปเดตหลังแก้ไข</p>
+                <p><code>!char delete <ชื่อ></code> – ลบตัวละคร</p>
+                <p><code>!sheet</code> – แสดงชีตตัวละคร</p>
+                <p><code>!portrait</code> – ดูภาพเต็มตัวละคร</p>
+                <p><code>!rollstats</code> – สุ่มสเตตัส 4d6 drop lowest</p>
+                <p><code>!token</code> หรือ <code>!token -border none</code> – สร้างโทเคน</p>
+            </div>
+        </section>
+
+        <!-- Dice Roll -->
+        <section>
+            <h2 class="text-3xl mb-4">🎲 การทอยลูกเต๋า</h2>
+            <pre>!r 1d20                 → ทอย 1 ลูก 20 หน้า
+!r 1d20 +5 adv          → ทอย 2 ลูก เอาสูงสุด +5
+!r 1d20 -2 dis          → ทอย 2 ลูก เอาต่ำสุด -2
+!rr 5 1d20 +3 adv       → ทอย 5 ลูก แบบ advantage</pre>
+            <p><code>-sb <bonus></code> – เพิ่มโบนัสให้การเซฟ</p>
+        </section>
+
+        <!-- Save & Check -->
+        <section>
+            <h2 class="text-3xl mb-4">🛡️ การเซฟ (Save) และเช็ก (Check)</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-xl text-cyan-300">Saving Throw</h3>
+                    <p><code>!save <stat></code> หรือ <code>!s <stat></code></p>
+                    <p>เช่น <code>!s con -b 1d4</code> – เพิ่มโบนัส</p>
+                </div>
+                <div>
+                    <h3 class="text-xl text-green-300">Ability Check</h3>
+                    <p><code>!check <stat></code> หรือ <code>!c <stat></code></p>
+                    <p>เช่น <code>!c dex</code> – เช็กความว่องไว</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Initiative -->
+        <section>
+            <h2 class="text-3xl mb-4">⚔️ Initiative</h2>
+            <pre>!init begin     → DM เริ่ม combat
+!init join      → ผู้เล่นเข้าร่วม
+!init end       → จบ combat
+!c init         → ดู initiative ตัวเอง
+!init madd      → เพิ่ม modifier</pre>
+        </section>
+
+        <!-- Attack & Spell -->
+        <section>
+            <h2 class="text-3xl mb-4">💥 การโจมตีและเวทมนตร์</h2>
+            <div class="space-y-3">
+                <p><strong>โจมตี:</strong></p>
+                <pre>!attack <weapon>
+!attack <weapon> <target> adv/dis
+!attack sword -rr 2   → โจมตี 2 ครั้ง</pre>
+
+                <p><strong>ร่ายเวท:</strong></p>
+                <pre>!cast fireball -l 3     → ร่ายไฟบอลเลเวล 3
+!cast <spell> -i        → ร่ายเวทนอกชีต
+!g ss 3 +1              → เพิ่ม spell slot เลเวล 3
+!g ss 2 -1              → ลด spell slot
+!sb                     → ดู spellbook</pre>
+
+                <p><strong>ดูข้อมูล:</strong></p>
+                <pre>!spell <name>    → ดูรายละเอียดเวท
+!item <name>     → ดูไอเทม
+!condition <name> → เช่น paralyzed
+!token <name>     → สร้างรูปภาพ</pre>
+            </div>
+        </section>
+
+        <!-- HP & Rest -->
+        <section>
+            <h2 class="text-3xl mb-4">❤️ HP และการพักผ่อน</h2>
+            <pre>!g hp +5       → เพิ่มเลือด 5
+!g hp max      → เติมเลือดเต็ม
+!g hp set 10   → ตั้งเลือดเป็น 10
+!g thp +3      → เพิ่ม temporary HP
+
+!g lr          → Long Rest (8 ชม.)
+!g sr          → Short Rest (1 ชม.)</pre>
+        </section>
+
+        <!-- Death Saves -->
+        <section>
+            <h2 class="text-3xl mb-4">💀 การเซฟเมื่อใกล้ตาย</h2>
+            <pre>!g ds          → ทอย death save
+!g ds s        → เพิ่ม success
+!g ds f        → เพิ่ม fail
+!g ds reset    → รีเซ็ต
+
+3 success → ฟื้นที่ 1 HP
+3 fail → ตายถาวร
+เพื่อนช่วยได้ด้วย medicine check (DC 10)</pre>
+        </section>
+
+        <!-- Custom Counter -->
+        <section>
+            <h2 class="text-3xl mb-4">🔢 Custom Counter</h2>
+            <pre>!cc create "Sorcery Points"
+!cc "Sorcery Points" +1
+!cc "Sorcery Points" -1
+!cc delete "Sorcery Points"
+
+ตัวอย่าง counter พิเศษ:
+!cc create "Rage" -max 1 -reset long -type bubble</pre>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-center py-6 mt-16 border-t border-gray-800">
+        <p>&copy; 2025 The Spire Tower. โลกแห่งการผจญภัยรอคุณอยู่</p>
+    </footer>
+</body>
+
+</html>
